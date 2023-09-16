@@ -7,12 +7,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   template: ` <button
     type="button"
     (click)="onClick.emit($event)"
-    [ngClass]="classes"
-    [ngStyle]="{ 'background-color': backgroundColor }"
+    class="font-semibold rounded-full cursor-pointer inline-block {{ sizeClasses }} {{ modeClasses }}"
+    [style.background-color]="backgroundColor"
   >
     {{ label }}
   </button>`,
-  styleUrls: ['./button.css'],
 })
 export default class ButtonComponent {
   /**
@@ -47,9 +46,17 @@ export default class ButtonComponent {
   @Output()
   onClick = new EventEmitter<Event>();
 
-  public get classes(): string[] {
-    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  public get sizeClasses(): string {
+   if (this.size === 'small') {
+     return 'text-sm px-4 py-2';
+   } else if (this.size === 'large') {
+     return 'text-lg px-6 py-3';
+   }
+   // Default to medium
+   return 'text-base px-5 py-3';
+ }
 
-    return ['storybook-button', `storybook-button--${this.size}`, mode];
-  }
+ public get modeClasses(): string {
+   return this.primary ? 'bg-blue-500 text-white' : 'bg-transparent text-gray-600 shadow-md';
+ }
 }
