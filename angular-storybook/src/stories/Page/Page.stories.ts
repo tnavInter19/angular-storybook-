@@ -2,10 +2,9 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { within, userEvent } from '@storybook/testing-library';
 import { CommonModule } from '@angular/common';
-
-import Button from './button.component';
-import Header from './header.component';
+import Header from '../Header/header.component';
 import Page from './page.component';
+import ButtonComponent from '../Button/button.component';
 
 const meta: Meta<Page> = {
   title: 'Example/Page',
@@ -16,7 +15,7 @@ const meta: Meta<Page> = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [Button, Header],
+      declarations: [ButtonComponent, Header],
       imports: [CommonModule],
     }),
   ],
