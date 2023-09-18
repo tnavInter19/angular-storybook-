@@ -3,10 +3,11 @@ import type { User } from '../Page/User';
 
 @Component({
   selector: 'storybook-header',
-  template: `<header>
-    <div class="storybook-header">
-      <div>
-        <svg
+  template: `
+    <header>
+      <div class="font-sans border-b border-gray-100 py-4 px-5 flex items-center justify-between">
+        <div class="flex items-center">
+          <svg
           width="32"
           height="32"
           viewBox="0 0 32 32"
@@ -27,43 +28,42 @@ import type { User } from '../Page/User';
             />
           </g>
         </svg>
-        <h1>Acme</h1>
-      </div>
-      <div>
-        <div *ngIf="user">
-          <span class="welcome">
-            Welcome, <b>{{ user.name }}</b
-            >!
-          </span>
-          <storybook-button
-            *ngIf="user"
-            size="small"
-            (onClick)="onLogout.emit($event)"
-            label="Log out"
-          ></storybook-button>
+          <h1 class="font-bold text-lg ml-2">Acme</h1>
         </div>
-        <div *ngIf="!user">
-          <storybook-button
-            *ngIf="!user"
-            size="small"
-            class="margin-left"
-            (onClick)="onLogin.emit($event)"
-            label="Log in"
-          ></storybook-button>
-          <storybook-button
-            *ngIf="!user"
-            primary
-            size="small"
-            primary="true"
-            class="margin-left"
-            (onClick)="onCreateAccount.emit($event)"
-            label="Sign up"
-          ></storybook-button>
+        <div>
+          <div *ngIf="user" class="flex items-center">
+            <span class="text-gray-700 text-sm mr-2">
+              Welcome, <b>{{ user.name }}</b>!
+            </span>
+            <storybook-button
+              *ngIf="user"
+              size="small"
+              (onClick)="onLogout.emit($event)"
+              label="Log out"
+              class="ml-2"
+            ></storybook-button>
+          </div>
+          <div *ngIf="!user" class="flex items-center">
+            <storybook-button
+              *ngIf="!user"
+              size="small"
+              (onClick)="onLogin.emit($event)"
+              label="Log in"
+              class="ml-2"
+            ></storybook-button>
+            <storybook-button
+              *ngIf="!user"
+              primary
+              size="small"
+              (onClick)="onCreateAccount.emit($event)"
+              label="Sign up"
+              class="ml-2"
+            ></storybook-button>
+          </div>
         </div>
       </div>
-    </div>
-  </header>`,
-  styleUrls: ['./header.css'],
+    </header>
+  `,
 })
 export default class HeaderComponent {
   @Input()

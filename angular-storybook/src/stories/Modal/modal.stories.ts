@@ -23,12 +23,24 @@ export default meta;
 type Story = StoryObj<ModalComponent>;
 
 // More on writing stories with args: https://storybook.js.org/docs/angular/writing-stories/args
-export const Default: Story = {
- 
-  args: {
-   isOpen: true,
-  title: 'Sample Modal',
-  },
+export const Default: Story = (args: ModalComponent) => ({
+ props: {
+   ...args,
+ },
+ template: `
+   <app-modal [isOpen]="isOpen" [title]="title">
+     <div>
+       <h3>Modal Content</h3>
+       <p>This is the content of the modal.</p>
+       <ng-content></ng-content>
+     </div>
+   </app-modal>
+ `,
+});
+
+Default.args = {
+ isOpen: true,
+ title: 'Sample Modal',
 };
 
 
